@@ -228,9 +228,9 @@ def creat_time_series(dt_list, act_labels, trial_codes, base_directory, subjects
                            id_val = np.append(id_val, [lbls[train_no:tv,1]])
                            print('done val')
                         elif usage_modus=='test':
-                            X_test = np.vstack((X_test, vals[tv:frames,:]))
-                            act_test = np.append(act_test, [lbls[tv:frames,0]])
-                            id_test = np.append(id_test, [lbls[tv:frames,1]])
+                            X_test = np.vstack((X_test, vals))
+                            act_test = np.append(act_test, [lbls])
+                            id_test = np.append(id_test, [lbls])
                             print('done test')
                     '''
                     print('frames')

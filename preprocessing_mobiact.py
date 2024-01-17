@@ -263,30 +263,28 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
             all_segments = norm_mobi(all_segments)
             print("\nFiles loaded and normalised")
             frames = all_segments.shape[0]
-            if frames != 0:
+            if frames != 0 and usage_modus == 'trainval':
                 train_no=round(0.70*frames)
                 val_no=round(0.15*frames)
                 tv= train_no+val_no
                 
                 print('train and val labels split')
             
-                if usage_modus=='trainval':
-                    X_train = np.vstack((X_train, all_segments[0:train_no,:]))
-                    act_train = np.append(act_train, np.full((train_no), activities_id[act]))
-                    id_train = np.append(id_train, np.full((train_no), subject_id[sub]))
-                    print('done train')
+               
+                X_train = np.vstack((X_train, all_segments[0:train_no,:]))
+                act_train = np.append(act_train, np.full((train_no), activities_id[act]))
+                id_train = np.append(id_train, np.full((train_no), subject_id[sub]))
+                print('done train')
                             
-                    X_val = np.vstack((X_val, all_segments[train_no:tv,:]))
-                    act_val = np.append(act_val, np.full((val_no), activities_id[act]))
-                    id_val = np.append(id_val, np.full((val_no), subject_id[sub]))
-                    print('done val')
-                elif usage_modus=='test':
-                    X_test = np.vstack((X_test, all_segments[tv:frames,:]))
-                    act_test = np.append(act_test, np.full((frames-tv), activities_id[act]))
-                    id_test = np.append(id_test, np.full((frames-tv), subject_id[sub]))
-                    print('done test')
-            else:
-                continue
+                X_val = np.vstack((X_val, all_segments[train_no:tv,:]))
+                act_val = np.append(act_val, np.full((val_no), activities_id[act]))
+                id_val = np.append(id_val, np.full((val_no), subject_id[sub]))
+                print('done val')
+            elif frames != 0 and usage_modus =='test':
+                X_test = np.vstack((X_test, all_segments))
+                act_test = np.append(act_test, np.full((all_segments.shape[0]), activities_id[act]))
+                id_test = np.append(id_test, np.full((all_segments.shape[0]), subject_id[sub]))
+                print('done test')        
    
     try: 
         if usage_modus=='trainval':
