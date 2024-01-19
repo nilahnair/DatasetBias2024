@@ -205,7 +205,7 @@ def creat_time_series(dt_list, act_labels, trial_codes, base_directory, subjects
                         #vals + lbls ='gravity.x', 'gravity.y', 'gravity.z', 'rotationRate.x', 'rotationRate.y', 'rotationRate.z', 'userAcceleration.x', 'userAcceleration.y', 'userAcceleration.z', 'act', 'id', 'weight', 'height', 'age', 'gender', 'trial'
                         #vals = np.concatenate((vals, lbls), axis=1)
                         
-                        if frames != 0:
+                        if frames != 0 and usage_modus=='trainval':
                             train_no=round(0.70*frames)
                             val_no=round(0.15*frames)
                             tv= train_no+val_no
@@ -217,17 +217,17 @@ def creat_time_series(dt_list, act_labels, trial_codes, base_directory, subjects
                             elif usage_modus=='test':
                                 yl_test= np.concatenate([yl_test, vals[tv:frames,0]])
                             '''
-                        if usage_modus=='trainval':
-                           X_train = np.vstack((X_train, vals[0:train_no,:]))
-                           act_train = np.append(act_train, [lbls[0:train_no,0]])
-                           id_train = np.append(id_train, [lbls[0:train_no,1]])
-                           print('done train')
+                            #if usage_modus=='trainval':
+                            X_train = np.vstack((X_train, vals[0:train_no,:]))
+                            act_train = np.append(act_train, [lbls[0:train_no,0]])
+                            id_train = np.append(id_train, [lbls[0:train_no,1]])
+                            print('done train')
                             
-                           X_val = np.vstack((X_val, vals[train_no:tv,:]))
-                           act_val = np.append(act_val, [lbls[train_no:tv,0]])
-                           id_val = np.append(id_val, [lbls[train_no:tv,1]])
-                           print('done val')
-                        elif usage_modus=='test':
+                            X_val = np.vstack((X_val, vals[train_no:tv,:]))
+                            act_val = np.append(act_val, [lbls[train_no:tv,0]])
+                            id_val = np.append(id_val, [lbls[train_no:tv,1]])
+                            print('done val')
+                        elif frames != 0 and usage_modus=='test':
                             X_test = np.vstack((X_test, vals))
                             act_test = np.append(act_test, [lbls])
                             id_test = np.append(id_test, [lbls])
@@ -281,9 +281,9 @@ def creat_time_series(dt_list, act_labels, trial_codes, base_directory, subjects
                     seq = np.require(seq, dtype=np.float)
                     # Storing the sequences
                     #obj = {"data": seq, "label": labelid}
-                    print("input values are")
-                    print(seq.shape)
-                    print(act_train[f])
+                    #print("input values are")
+                    #print(seq.shape)
+                    #print(act_train[f])
                     
                     obj = {"data": seq, "label": act_train[f], "labels": act_all_train[f]}
                     
@@ -310,9 +310,9 @@ def creat_time_series(dt_list, act_labels, trial_codes, base_directory, subjects
                     seq = np.require(seq, dtype=np.float)
                     # Storing the sequences
                     #obj = {"data": seq, "label": labelid}
-                    print("input values are")
-                    print(seq.shape)
-                    print(act_val[f])
+                    #print("input values are")
+                    #print(seq.shape)
+                    #print(act_val[f])
                     obj = {"data": seq, "label": act_val[f], "labels": act_all_val[f]}
                 
                     f = open(os.path.join(data_dir_val, 'seq_{0:06}.pkl'.format(counter_seq)), 'wb')
@@ -338,9 +338,9 @@ def creat_time_series(dt_list, act_labels, trial_codes, base_directory, subjects
                     seq = np.require(seq, dtype=np.float)
                     # Storing the sequences
                     #obj = {"data": seq, "label": labelid}
-                    print("input values are")
-                    print(seq.shape)
-                    print(act_test[f])
+                    #print("input values are")
+                    #print(seq.shape)
+                    #print(act_test[f])
                     obj = {"data": seq, "label": act_test[f], "labels": act_all_test[f]}
                 
                     f = open(os.path.join(data_dir_test, 'seq_{0:06}.pkl'.format(counter_seq)), 'wb')
@@ -447,10 +447,11 @@ if __name__ == '__main__':
     print("[INFO] -- Selected activites: "+str(act_labels))    
     trial_codes = [TRIAL_CODES[act] for act in act_labels]
     
-    base_directory = '/data/nnair/icpr2024/motionsense/prepros/'
+    base_directory = '/data/nnair/datasetbias/motionsense/prepros/exp1/'
     
-    sel_subjects_train=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
-    sel_subjects_test=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+    #sel_subjects_train=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+    sel_subjects_train=[4, 13, 14, 22]
+    sel_subjects_test=[1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20, 21, 23, 24]
     
     creat_time_series(dt_list, act_labels, trial_codes, base_directory=base_directory, subjects=sel_subjects_train, mode="raw", labeled=True, usage_modus='trainval')
     creat_time_series(dt_list, act_labels, trial_codes, base_directory=base_directory, subjects=sel_subjects_test, mode="raw", labeled=True, usage_modus='test')
