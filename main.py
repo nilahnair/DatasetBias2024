@@ -19,7 +19,7 @@ import datetime
 from sacred import Experiment
 from sacred.observers import MongoObserver
 
-ex= Experiment('mobiact lstm x3 50-0.001-15 trial1')
+ex= Experiment('motionsense cnn 50-0.001-30 trial1')
 
 ex.observers.append(MongoObserver.create(url='curtiz',
                                          db_name='nnair_sacred',
@@ -210,7 +210,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
         folder_exp = {'mocap': "/data/nnair/icpr2024/lara/results/transt/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/results/trial1/",
-                    'motionsense': "/data/nnair/icpr2024/motionsense/results/trial/",
+                    'motionsense': "/data/nnair/datasetbias/motionsense/results/exp1/cnn/",
                     'sisfall': "/data/nnair/icpr2024/sisfall/results/trial/"
                     }
     elif output[output_idx] == 'attribute':
@@ -224,7 +224,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     dataset_root = {'mocap': "/data/nnair/icpr2024/lara/prepros/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/prepros/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/prepros/",
-                    'motionsense': "/data/nnair/icpr2024/motionsense/prepros/",
+                    'motionsense': "/data/nnair/datasetbias/motionsense/prepros/exp1/",
                     'sisfall': "/data/nnair/icpr2024/sisfall/prepros/"
                     }
 

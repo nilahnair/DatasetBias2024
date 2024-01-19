@@ -188,6 +188,8 @@ def creat_time_series(dt_list, act_labels, trial_codes, base_directory, subjects
                         else:
                             vals[:,x_id*3:(x_id+1)*3] = raw_data[axes].values
                         vals = vals[:,:num_data_cols]
+                        
+                        #normalisation of the data
                         vals = norm_ms(vals)
                     
                         frames=vals.shape[0]
@@ -229,8 +231,8 @@ def creat_time_series(dt_list, act_labels, trial_codes, base_directory, subjects
                             print('done val')
                         elif frames != 0 and usage_modus=='test':
                             X_test = np.vstack((X_test, vals))
-                            act_test = np.append(act_test, [lbls])
-                            id_test = np.append(id_test, [lbls])
+                            act_test = np.append(act_test, [lbls[:,0]])
+                            id_test = np.append(id_test, [lbls[:,1]])
                             print('done test')
                     '''
                     print('frames')
