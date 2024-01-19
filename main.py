@@ -19,7 +19,7 @@ import datetime
 from sacred import Experiment
 from sacred.observers import MongoObserver
 
-ex= Experiment('motionsense lstm x3 exp5')
+ex= Experiment('motionsense cnntrans x3 exp5')
 
 ex.observers.append(MongoObserver.create(url='curtiz',
                                          db_name='nnair_sacred',
@@ -210,7 +210,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
         folder_exp = {'mocap': "/data/nnair/icpr2024/lara/results/transt/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/results/trial1/",
-                    'motionsense': "/data/nnair/datasetbias/motionsense/results/exp5/lstm/",
+                    'motionsense': "/data/nnair/datasetbias/motionsense/results/exp5/cnntrans/",
                     'sisfall': "/data/nnair/icpr2024/sisfall/results/trial/"
                     }
     elif output[output_idx] == 'attribute':
@@ -342,7 +342,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 def my_config():
     print("configuration function began")
     config = configuration(dataset_idx=3,
-                           network_idx=1,
+                           network_idx=3,
                            output_idx=0,
                            usage_modus_idx=0,
                            #dataset_fine_tuning_idx=0,
