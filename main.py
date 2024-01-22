@@ -32,7 +32,7 @@ def load_credentials(path='~/.mongodb_credentials'):
 
 user, pw = load_credentials(path='~/.mongodb_credentials')
 
-ex= Experiment('motionsense cnntrans x3 exp23')
+ex= Experiment('motionsense cnn x3 exp24')
 
 
 ex.observers.append(MongoObserver.create(url='curtiz',
@@ -80,7 +80,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     # Number of classes for either for activity recognition
     num_classes = {'mocap': 7, 'mbientlab': 7, 'mobiact': 9, 'motionsense': 6, 'sisfall': 15}
     num_attributes = {'mocap': 19, 'mbientlab': 19, 'mobiact': 0, 'motionsense': 0, 'sisfall': 0}
-    num_tr_inputs = {'mocap': 345417, 'mbientlab': 94753, 'mobiact': 160561, 'motionsense': 20456, 'sisfall': 118610}
+    num_tr_inputs = {'mocap': 345417, 'mbientlab': 94753, 'mobiact': 160561, 'motionsense': 19534, 'sisfall': 118610}
 
     
 
@@ -224,7 +224,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
         folder_exp = {'mocap': "/data/nnair/icpr2024/lara/results/transt/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/results/trial1/",
-                    'motionsense': "/data/nnair/datasetbias/motionsense/results/exp23/cnntrans/",
+                    'motionsense': "/data/nnair/datasetbias/motionsense/results/exp24/cnn/",
                     'sisfall': "/data/nnair/icpr2024/sisfall/results/trial/"
                     }
     elif output[output_idx] == 'attribute':
@@ -238,12 +238,12 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     dataset_root = {'mocap': "/data/nnair/icpr2024/lara/prepros/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/prepros/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/prepros/",
-                    'motionsense': "/data/nnair/datasetbias/motionsense/prepros/exp23/",
+                    'motionsense': "/data/nnair/datasetbias/motionsense/prepros/exp24/",
                     'sisfall': "/data/nnair/icpr2024/sisfall/prepros/"
                     }
 
     # GPU
-    os.environ["CUDA_VISIBLE_DEVICES"] = "4"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "5"
     GPU = 0
 
     # Labels position on the segmented window
@@ -357,7 +357,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 def my_config():
     print("configuration function began")
     config = configuration(dataset_idx=3,
-                           network_idx=3,
+                           network_idx=0,
                            output_idx=0,
                            usage_modus_idx=0,
                            #dataset_fine_tuning_idx=0,
