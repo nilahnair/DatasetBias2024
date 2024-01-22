@@ -10,6 +10,7 @@ import logging
 import torch
 import numpy as np
 import random
+import io
 
 import platform
 from modus_selecter import Modus_Selecter
@@ -19,12 +20,25 @@ import datetime
 from sacred import Experiment
 from sacred.observers import MongoObserver
 
-ex= Experiment('motionsense cnntrans x3 exp20')
+def load_credentials(path='~/.mongodb_credentials'):
+    path = os.path.expanduser(path)
+ 
+    logger = logging.getLogger('::load_credentials')
+    logger.info(f'Loading credientials from {path}')
+    with io.open(path) as f:
+        user, pw = f.read().strip().split(',')
+ 
+    return user, pw
+
+user, pw = load_credentials(path='~/.mongodb_credentials')
+
+ex= Experiment('motionsense cnn x3 exp21')
+
 
 ex.observers.append(MongoObserver.create(url='curtiz',
                                          db_name='nnair_sacred',
-                                         username='nnair',
-                                         password='Germany2018',
+                                         username=user,
+                                         password=pw,
                                          authSource='admin',
                                          authMechanism='SCRAM-SHA-1'))
 
@@ -66,7 +80,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     # Number of classes for either for activity recognition
     num_classes = {'mocap': 7, 'mbientlab': 7, 'mobiact': 9, 'motionsense': 6, 'sisfall': 15}
     num_attributes = {'mocap': 19, 'mbientlab': 19, 'mobiact': 0, 'motionsense': 0, 'sisfall': 0}
-    num_tr_inputs = {'mocap': 345417, 'mbientlab': 94753, 'mobiact': 160561, 'motionsense': 20276, 'sisfall': 118610}
+    num_tr_inputs = {'mocap': 345417, 'mbientlab': 94753, 'mobiact': 160561, 'motionsense': 19667, 'sisfall': 118610}
 
     
 
@@ -210,7 +224,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
         folder_exp = {'mocap': "/data/nnair/icpr2024/lara/results/transt/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/results/trial1/",
-                    'motionsense': "/data/nnair/datasetbias/motionsense/results/exp20/cnntrans/",
+                    'motionsense': "/data/nnair/datasetbias/motionsense/results/exp21/cnn/",
                     'sisfall': "/data/nnair/icpr2024/sisfall/results/trial/"
                     }
     elif output[output_idx] == 'attribute':
@@ -224,7 +238,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     dataset_root = {'mocap': "/data/nnair/icpr2024/lara/prepros/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/prepros/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/prepros/",
-                    'motionsense': "/data/nnair/datasetbias/motionsense/prepros/exp20/",
+                    'motionsense': "/data/nnair/datasetbias/motionsense/prepros/exp21/",
                     'sisfall': "/data/nnair/icpr2024/sisfall/prepros/"
                     }
 
@@ -310,6 +324,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     return configuration
 
 
+
 def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
     # set up the logging
     logging_format = '[%(asctime)-19s, %(name)s, %(levelname)s] %(message)s'
@@ -342,7 +357,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 def my_config():
     print("configuration function began")
     config = configuration(dataset_idx=3,
-                           network_idx=3,
+                           network_idx=0,
                            output_idx=0,
                            usage_modus_idx=0,
                            #dataset_fine_tuning_idx=0,
