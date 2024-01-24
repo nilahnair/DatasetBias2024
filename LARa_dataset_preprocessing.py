@@ -609,7 +609,7 @@ def generate_data(ids, sliding_window_length, sliding_window_step, data_dir=None
     @param identity_bool: selecting for identity experiment
     @param usage_modus: selecting Train, Val or testing
     '''
-    
+    '''
     if identity_bool:
         if usage_modus == 'train':
             recordings = ['R{:02d}'.format(r) for r in range(1, 21)]
@@ -619,6 +619,7 @@ def generate_data(ids, sliding_window_length, sliding_window_step, data_dir=None
             recordings = ['R{:02d}'.format(r) for r in range(26, 31)]
     else:
         recordings = ['R{:02d}'.format(r) for r in range(1, 31)]
+    '''
     
     counter_seq = 0
     hist_classes_all = np.zeros(NUM_CLASSES)
@@ -626,20 +627,22 @@ def generate_data(ids, sliding_window_length, sliding_window_step, data_dir=None
     if usage_modus == 'train':
         #recordings = ['R{:02d}'.format(r) for r in range(17, 27)]
         recordings = ['R01', 'R02', 'R03', 'R04', 'R05', 'R06', 'R07', 'R08', 'R09', 'R10',  'R20', 'R21', 'R22', 'R23', 
-                      'R24', 'R25', 'R26', 'R27', 'R28', 'R29', 'R30']
+                      'R24', 'R25', 'R26', 'R27', 'R28', 'R29', 'R30', 'R14', 'R15', 'R17']
     elif usage_modus == 'val':
         #recordings = ['R{:02d}'.format(r) for r in range(27, 31)]
         recordings = ['R11', 'R12', 'R13', 'R16', 'R18', 'R19']
     elif usage_modus == 'test':
-        recordings = ['R14', 'R15', 'R17']
+        #recordings = ['R14', 'R15', 'R17']
+        recordings = ['R01', 'R02', 'R03', 'R04', 'R05', 'R06', 'R07', 'R08', 'R09', 'R10', 'R11', 'R12', 'R13', 'R14', 'R15', 'R16', 'R17', 'R18', 'R19' 'R20', 'R21', 'R22', 'R23', 
+                      'R24', 'R25', 'R26', 'R27', 'R28', 'R29', 'R30']
     
 
     for P in persons:
         if P not in ids:
             print("\nNo Person in expected IDS {}".format(P))
         
-        else:
-            
+        #else:
+            '''
             if P == 'S11':
                 # Selecting the proportions of the train, val or testing according to the quentity of
                 # recordings per subject, as there are not equal number of recordings per subject
@@ -673,7 +676,7 @@ def generate_data(ids, sliding_window_length, sliding_window_step, data_dir=None
                         recordings = ['R{:02d}'.format(r) for r in range(26, 31)]
                 else:
                     recordings = ['R{:02d}'.format(r) for r in range(1, 31)]
-            
+            '''
         for R in recordings:
             # All of these if-cases are coming due to the naming of the recordings in the data.
             # Not all the subjects have the same
@@ -868,23 +871,23 @@ def create_dataset(half=True):
     @param half: set for creating dataset with half the frequence.
     '''
     
-    all_data = ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14"]
-    train_ids = ["S01", "S02", "S03", "S04", "S05", "S07", "S08", "S09", "S10", "S11", "S12", "S15", "S16"]
-    val_ids = ["S05", "S11", "S12"]
-    test_ids = ["S06", "S13", "S14"]
+    #all_data = ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14", "S15", "S16" ]
+    train_ids = ["S03", "S09", "S10", "S14"]
+    val_ids = ["S03", "S09", "S10", "S14"]
+    test_ids = ["S01", "S02", "S04", "S05", "S06", "S07", "S08", "S11", "S12", "S13", "S15", "S16" ]
     
     
     #general_statistics(train_ids)
 
     if half:
         "Path to the segmented sequences"
-        base_directory = '/data/nnair/datasetbias/prepros/all/'
+        base_directory = '/data/nnair/datasetbias/prepros/'
         sliding_window_length = 100
         sliding_window_step = 12
     else:
         "Path to the segmented sequences"
         print('no downsampling')
-        base_directory = '/data/nnair/icpr2024/lara/prepros/'
+        base_directory = '/data/nnair/datasetbias/lara/prepros/exp1/'
         sliding_window_length = 200
         sliding_window_step = 25
 

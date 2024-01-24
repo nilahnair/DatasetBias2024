@@ -32,7 +32,7 @@ def load_credentials(path='~/.mongodb_credentials'):
 
 user, pw = load_credentials(path='~/.mongodb_credentials')
 
-ex= Experiment('motionsense cnntrans x3 exp5')
+ex= Experiment('lara cnn x3 exp1')
 
 
 ex.observers.append(MongoObserver.create(url='curtiz',
@@ -129,7 +129,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     epochs = {'mocap': {'cnn': {'softmax': 6, 'attribute': 6},
                         'lstm': {'softmax': 15, 'attribute': 6},
                         'cnn_imu': {'softmax': 10, 'attribute': 6},
-                        'cnn_transformer':{'softmax': 50, 'attribute': 6}},
+                        'cnn_transformer':{'softmax': 30, 'attribute': 6}},
               'mbientlab': {'cnn': {'softmax': 10, 'attribute': 10},
                             'lstm': {'softmax': 15, 'attribute': 10},
                             'cnn_imu': {'softmax': 30, 'attribute': 10},
@@ -157,12 +157,12 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     # Batch size
     batch_size_train = {
         'cnn': {'mocap': 100, 'mbientlab': 100, 'mobiact': 100, 'motionsense': 50, 'sisfall': 50},
-        'lstm': {'mocap': 50, 'mbientlab': 50, 'mobiact': 50, 'motionsense': 100, 'sisfall': 50},
+        'lstm': {'mocap': 100, 'mbientlab': 50, 'mobiact': 50, 'motionsense': 100, 'sisfall': 50},
         'cnn_imu': {'mocap': 100, 'mbientlab': 100, 'mobiact': 100, 'motionsense': 100, 'sisfall': 100},
         'cnn_transformer': {'mocap': 100, 'mbientlab': 128, 'mobiact': 50, 'motionsense': 100, 'sisfall': 50}}
 
     batch_size_val = {'cnn': {'mocap': 100, 'mbientlab': 100, 'mobiact': 100, 'motionsense': 50,'sisfall': 50},
-                      'lstm': {'mocap': 50, 'mbientlab': 50, 'mobiact': 50, 'motionsense': 100,'sisfall': 50},
+                      'lstm': {'mocap': 100, 'mbientlab': 50, 'mobiact': 50, 'motionsense': 100,'sisfall': 50},
                       'cnn_imu': {'mocap': 100, 'mbientlab': 100,'mobiact': 100, 'motionsense': 100,'sisfall': 100},
                       'cnn_transformer': {'mocap': 100, 'mbientlab': 128,'mobiact': 50, 'motionsense': 100,'sisfall': 50}}
 
@@ -221,7 +221,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     
     if output[output_idx] == 'softmax':
         labeltype = "class"
-        folder_exp = {'mocap': "/data/nnair/icpr2024/lara/results/transt/",
+        folder_exp = {'mocap': "/data/nnair/datasetbias/lara/results/exp1/cnn/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/results/trial1/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/results/exp5/cnntrans/",
@@ -235,7 +235,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     
     # Paths are given according to the ones created in *preprocessing.py for the datasets
     
-    dataset_root = {'mocap': "/data/nnair/icpr2024/lara/prepros/",
+    dataset_root = {'mocap': "/data/nnair/datasetbias/lara/prepros/exp1/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/prepros/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/prepros/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/prepros/exp5/",
@@ -356,7 +356,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 @ex.config
 def my_config():
     print("configuration function began")
-    config = configuration(dataset_idx=3,
+    config = configuration(dataset_idx=0,
                            network_idx=3,
                            output_idx=0,
                            usage_modus_idx=0,
