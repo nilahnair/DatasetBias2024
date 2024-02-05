@@ -32,7 +32,7 @@ def load_credentials(path='~/.mongodb_credentials'):
 
 user, pw = load_credentials(path='~/.mongodb_credentials')
 
-ex= Experiment('lara lstm x3 exp23')
+ex= Experiment('lara cnn x3 exp24')
 
 
 ex.observers.append(MongoObserver.create(url='curtiz',
@@ -80,7 +80,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     # Number of classes for either for activity recognition
     num_classes = {'mocap': 7, 'mbientlab': 7, 'mobiact': 9, 'motionsense': 6, 'sisfall': 15}
     num_attributes = {'mocap': 19, 'mbientlab': 19, 'mobiact': 0, 'motionsense': 0, 'sisfall': 0}
-    num_tr_inputs = {'mocap':85377, 'mbientlab': 94753, 'mobiact': 160561, 'motionsense': 20033, 'sisfall': 118610}
+    num_tr_inputs = {'mocap':87446, 'mbientlab': 94753, 'mobiact': 160561, 'motionsense': 20033, 'sisfall': 118610}
 
     
 
@@ -221,7 +221,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     
     if output[output_idx] == 'softmax':
         labeltype = "class"
-        folder_exp = {'mocap': "/data/nnair/datasetbias/lara/results/exp23/lstm/",
+        folder_exp = {'mocap': "/data/nnair/datasetbias/lara/results/exp24/cnn/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/results/trial1/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/results/exp5/cnntrans/",
@@ -235,7 +235,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     
     # Paths are given according to the ones created in *preprocessing.py for the datasets
     
-    dataset_root = {'mocap': "/data/nnair/datasetbias/lara/prepros/exp23/",
+    dataset_root = {'mocap': "/data/nnair/datasetbias/lara/prepros/exp24/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/prepros/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/prepros/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/prepros/exp5/",
@@ -243,7 +243,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
                     }
 
     # GPU
-    os.environ["CUDA_VISIBLE_DEVICES"] = "6"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     GPU = 0
 
     # Labels position on the segmented window
@@ -357,7 +357,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 def my_config():
     print("configuration function began")
     config = configuration(dataset_idx=0,
-                           network_idx=1,
+                           network_idx=2,
                            output_idx=0,
                            usage_modus_idx=0,
                            #dataset_fine_tuning_idx=0,
