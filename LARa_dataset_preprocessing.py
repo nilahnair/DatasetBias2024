@@ -873,9 +873,9 @@ def create_dataset(half=True):
     '''
     
     #all_data = ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14", "S15", "S16" ]
-    train_ids = ["S01", "S02", "S03", "S05"] #1,2,3,5
-    val_ids = ["S01", "S02", "S03", "S05"]
-    test_ids = ["S04", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14", "S15", "S16"]
+    train_ids = ["S01", "S03", "S04", "S07"] #1,3,4,7
+    val_ids = ["S01", "S03", "S04", "S07"]
+    test_ids = ["S02", "S05", "S06", "S08", "S09", "S10", "S11", "S12", "S13", "S14", "S15", "S16"]
     
     
     #general_statistics(train_ids)
@@ -888,7 +888,7 @@ def create_dataset(half=True):
     else:
         "Path to the segmented sequences"
         print('no downsampling')
-        base_directory = '/data/nnair/datasetbias/lara/prepros/exp26/'
+        base_directory = '/data/nnair/datasetbias/lara/prepros/exp27/'
         sliding_window_length = 200
         sliding_window_step = 25
 
