@@ -32,7 +32,7 @@ def load_credentials(path='~/.mongodb_credentials'):
 
 user, pw = load_credentials(path='~/.mongodb_credentials')
 
-ex= Experiment('sisfall cnntrans x3 exp11')
+ex= Experiment('sisfall cnn x3 exp12')
 
 
 ex.observers.append(MongoObserver.create(url='curtiz',
@@ -225,7 +225,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/results/trial1/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/results/exp5/cnntrans/",
-                    'sisfall': "/data/nnair/datasetbias/sisfall/results/exp11/cnntrans/"
+                    'sisfall': "/data/nnair/datasetbias/sisfall/results/exp12/cnn/"
                     }
     elif output[output_idx] == 'attribute':
         labeltype = "attributes"
@@ -239,11 +239,11 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/prepros/",
                     'mobiact': "/data/nnair/icpr2024/mobiact/prepros/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/prepros/exp5/",
-                    'sisfall': "/data/nnair/datasetbias/sisfall/prepros/exp11/"
+                    'sisfall': "/data/nnair/datasetbias/sisfall/prepros/exp12/"
                     }
 
     # GPU
-    os.environ["CUDA_VISIBLE_DEVICES"] = "6"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "7"
     GPU = 0
 
     # Labels position on the segmented window
@@ -357,7 +357,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 def my_config():
     print("configuration function began")
     config = configuration(dataset_idx=4,
-                           network_idx=3,
+                           network_idx=0,
                            output_idx=0,
                            usage_modus_idx=0,
                            #dataset_fine_tuning_idx=0,
