@@ -457,18 +457,18 @@ def main():
     #            'SA22', 'SA23', 'SE01', 'SE02', 'SE03', 'SE04', 'SE05', 
     #            'SE06', 'SE07', 'SE08', 'SE09', 'SE10', 'SE11', 'SE12', 'SE13', 'SE14', 'SE15']
     
-    #train_ids= ['SA05','SA06', 'SA10', 'SA15'] #4,9,15,18
-    test_ids= ['SA01','SA02', 'SA03', 'SA05', 'SA06', 'SA07', 
-                'SA08', 'SA10', 'SA11', 'SA12', 'SA13', 'SA14', 
-                'SA16', 'SA17', 'SA19', 'SA20', 'SA21', 
-               'SA22', 'SA23']
+    #train_ids= ['SA05','SA06', 'SA10', 'SA15'] #4,7,14,21
+    test_ids= ['SA01','SA02', 'SA03', 'SA05', 'SA06',  
+                'SA08', 'SA09', 'SA10', 'SA11', 'SA12', 'SA13', 
+                'SA15', 'SA16', 'SA17', 'SA18', 'SA19', 'SA20',  
+                'SA22', 'SA23']
                #'SE01', 'SE02', 'SE03', 'SE04', 'SE05','SE06', 'SE07', 'SE08', 'SE09', 'SE10', 
                #'SE11', 'SE12', 'SE13', 'SE14', 'SE15']
     
     activities= ['D01', 'D02', 'D03', 'D04', 'D05', 'D07', 'D08', 'D09', 
                  'D10', 'D011', 'D12', 'D14', 'D15', 'D16', 'D17']
     
-    base_directory ='/data/nnair/datasetbias/sisfall/prepros/exp14/'
+    base_directory ='/data/nnair/datasetbias/sisfall/prepros/exp15/'
     data_dir_train = base_directory + 'sequences_train/'
     data_dir_val = base_directory + 'sequences_val/'
     data_dir_test = base_directory + 'sequences_test/'
