@@ -14,22 +14,22 @@ def create_folder():
         folder = 'exp' + str(i)
         path = os.path.join(base_dir, folder)
         try:
-            os.makedir(path)
+            os.mkdir(path)
         except OSError as error:  
             print(error)
         path2 = os.path.join(path, 'sequences_train')
         try:
-            os.makedirs(path2)
+            os.mkdir(path2)
         except OSError as error:  
             print(error)
         path3 = os.path.join(path, 'sequences_test')
         try:
-            os.makedirs(path3)
+            os.mkdir(path3)
         except OSError as error:  
             print(error)
         path4 = os.path.join(path, 'sequences_val')
         try:
-            os.makedirs(path4)
+            os.mkdir(path4)
         except OSError as error:  
             print(error)
     return 
