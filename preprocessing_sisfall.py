@@ -457,18 +457,27 @@ def main():
     #            'SA22', 'SA23', 'SE01', 'SE02', 'SE03', 'SE04', 'SE05', 
     #            'SE06', 'SE07', 'SE08', 'SE09', 'SE10', 'SE11', 'SE12', 'SE13', 'SE14', 'SE15']
     
-    train_ids= ['SA01','SA06', 'SA09', 'SA22'] #1,6,9,22
-    test_ids= ['SA02', 'SA03', 'SA04', 'SA05', 'SA07', 
-                'SA08', 'SA10', 'SA11', 'SA12', 'SA13', 'SA14', 
-                'SA15', 'SA16', 'SA17', 'SA18', 'SA19', 'SA20', 'SA21', 
-                'SA23']
+    sub_list= {'SA01':1, 'SA02':2, 'SA03':3, 'SA04':4, 'SA05':5, 'SA06':6, 'SA07':7, 'SA08':8, 'SA09':9, 'SA10':10, 'SA11':11, 'SA12':12, 
+               'SA13':13, 'SA14':14, 'SA15':15, 'SA16':16, 'SA17':17, 'SA18':18, 'SA19':19, 'SA20':20, 'SA21':21, 'SA22':22, 'SA23':23, 'SE01':24, 'SE02':25,
+               'SE03':26, 'SE04':27, 'SE05':28, 'SE06':29, 'SE07':30, 'SE08':31, 'SE09':32, 'SE10':33, 'SE11':34, 'SE12':35, 'SE13':36, 'SE14':37, 'SE15':38}
+    
+    train_ids=[]
+    for i in [24,28,29,30,32,35,36,37]:
+        x = [sub_list for sub_list, v in sub_list.items() if v == i][0]
+        train_ids.append(x)
+        
+    test_ids=[]
+    for i in SUBJECT:
+        if i not in train_ids:
+            test_ids.append(i)
+    
                #'SE01', 'SE02', 'SE03', 'SA06', 'SE04', 'SE05','SE06', 'SE07', 'SE08', 'SE09', 'SE10', 
                #'SE11', 'SE12', 'SE13', 'SE14', 'SE15']
     
     activities= ['D01', 'D02', 'D03', 'D04', 'D05', 'D07', 'D08', 'D09', 
                  'D10', 'D011', 'D12', 'D14', 'D15', 'D16', 'D17']
     
-    base_directory ='/data/nnair/datasetbias/sisfall/prepros/exp34/'
+    base_directory ='/data/nnair/datasetbias/sisfall/prepros/exp1/'
     data_dir_train = base_directory + 'sequences_train/'
     data_dir_val = base_directory + 'sequences_val/'
     data_dir_test = base_directory + 'sequences_test/'
