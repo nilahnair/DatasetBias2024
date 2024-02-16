@@ -4,8 +4,8 @@ Created on Fri Feb 16 15:22:12 2024
 
 @author: nilah
 """
-
 import os
+print(dir(os))
 
 base_dir = '/data/nnair/datasetbias/sisfall/prepros/'
 
