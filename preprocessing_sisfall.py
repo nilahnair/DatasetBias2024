@@ -462,7 +462,7 @@ def main():
                'SE03':26, 'SE04':27, 'SE05':28, 'SE06':29, 'SE07':30, 'SE08':31, 'SE09':32, 'SE10':33, 'SE11':34, 'SE12':35, 'SE13':36, 'SE14':37, 'SE15':38}
     
     train_ids=[]
-    for i in [ 1,3,7, 12, 14, 23, 27, 38]:
+    for i in [ 2,5, 18, 21, 24, 29, 32, 37]:
         x = [sub_list for sub_list, v in sub_list.items() if v == i][0]
         train_ids.append(x)
         
@@ -477,7 +477,7 @@ def main():
     activities= ['D01', 'D02', 'D03', 'D04', 'D05', 'D07', 'D08', 'D09', 
                  'D10', 'D011', 'D12', 'D14', 'D15', 'D16', 'D17']
     
-    base_directory ='/data/nnair/datasetbias/sisfall/prepros/exp10/'
+    base_directory ='/data/nnair/datasetbias/sisfall/prepros/exp11/'
     data_dir_train = base_directory + 'sequences_train/'
     data_dir_val = base_directory + 'sequences_val/'
     data_dir_test = base_directory + 'sequences_test/'
