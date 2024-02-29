@@ -28,7 +28,7 @@ def load_credentials(path='~/.mongodb_credentials'):
     with io.open(path) as f:
         user, pw, url, db_name = f.read().strip().split(',')
  
-    return user, pw
+    return user, pw, url, db_name
 
 user, pw, url, db_name = load_credentials(path='~/.mongodb_credentials')
 
