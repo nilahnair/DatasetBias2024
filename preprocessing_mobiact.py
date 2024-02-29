@@ -36,6 +36,13 @@ subject_id={'1':0, '2':1, '3':2, '4':3, '5':4, '6':5, '7':6, '8':7, '9':8, '10':
             '51':42, '52':43, '53':44, '54':45, '55':46, '56':47, '58':48, '59':49, '60':50,
             '61':51, '62':52, '63':53, '64':54, '65':55, '66':56, '67':57}
 act_record={'STD':1, 'WAL':1, 'JOG':3, 'JUM':3, 'STU':6, 'STN':6, 'SCH':6, 'CSI':6, 'CSO':6}
+SUBJECT= ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
+          '11', '12', '16', '18', '19', '20', 
+          '21', '22', '23', '24', '25', '26', '27', '29',
+          '32', '33', '35', '36', '37', '38', '39', '40', 
+          '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', 
+          '51', '52', '53', '54', '55', '56', '58', '59', '60',
+          '61', '62', '63', '64', '65', '66', '67']
 
 def read_subject_info(file_path):
     """
@@ -237,18 +244,18 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
         id_test = np.empty((0))
         
     for act in activities:
-        print(act)
+        #print(act)
         for sub in ids:
-            print(sub)
+            #print(sub)
             all_segments = np.empty((0, 9))
             for recordings in range(1,act_record[act]+1):
-                print(recordings)
+                #print(recordings)
             
                 file_name_data = "{}/{}_{}_{}_annotated.csv".format(act, act, sub, recordings)
                 print("\n{}".format(file_name_data))
                 try:
                     # getting data
-                    print(FOLDER_PATH + file_name_data)
+                    #print(FOLDER_PATH + file_name_data)
                     data = reader_data(FOLDER_PATH + file_name_data)
                     print("\nFiles loaded in modus {}\n{}".format(usage_modus, file_name_data))
                     
@@ -432,17 +439,31 @@ def create_dataset(identity_bool = False):
     @param half: set for creating dataset with half the frequence.
     '''
     
-    train_ids=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
-            '11', '12', '16', '18', '19', '20', 
-            '21', '22', '23', '24', '25', '26', '27', '29',
-            '32', '33', '35', '36', '37', '38', '39', '40', 
-            '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', 
-            '51', '52', '53', '54', '55', '56', '58', '59', '60',
-            '61', '62', '63', '64', '65', '66', '67']
+    sub_list={'1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, '10':10, 
+            '11':11, '12':12, '16':16, '18':18, '19':19, '20':20, 
+            '21':21, '22':22, '23':23, '24':24, '25':25, '26':26, '27':27, '29':29,
+            '32':32, '33':33, '35':35, '36':36, '37':37, '38':38, '39':39, '40':40, 
+            '41':41, '42':42, '43':43, '44':44, '45':45, '46':46, '47':47, '48':48, '49':49, '50':50, 
+            '51':51, '52':52, '53':53, '54':54, '55':55, '56':56, '58':58, '59':59, '60':60,
+            '61':61, '62':62, '63':63, '64':64, '65':65, '66':66, '67':67}
     
-    test_ids=train_ids
     
-    base_directory = '/data/nnair/icpr2024/mobiact/prepros/'
+    train_ids=[]
+    for i in [2, 4, 12, 20, 21, 29, 32, 37, 45, 53, 56, 65]:
+        x = [sub_list for sub_list, v in sub_list.items() if v == i][0]
+        train_ids.append(x)
+        
+    test_ids=[]
+    for i in SUBJECT:
+        if i not in train_ids:
+            test_ids.append(i)
+    
+    
+    base_directory = '/data/nnair/icpr2024/mobiact/prepros/exp1/'
+    print('train ids')
+    print(train_ids)
+    print('test ids')
+    print(test_ids)
     
     
     print("Reading subject info...")
