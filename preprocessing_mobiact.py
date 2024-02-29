@@ -260,7 +260,10 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
                     print("\nFiles loaded in modus {}\n{}".format(usage_modus, file_name_data))
                     
                     IMU=np.array(data['IMU'])
+                    print(IMU.shape)
                     all_segments = np.vstack((all_segments, IMU))
+                    print('all_segments shape')
+                    print(all_segments.shape)
                     
                     print("\nFiles loaded")
                     
@@ -288,6 +291,8 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
                 X_train = np.vstack((X_train, all_segments[0:train_no,:]))
                 act_train = np.append(act_train, np.full((train_no), activities_id[act]))
                 id_train = np.append(id_train, np.full((train_no), subject_id[sub]))
+                print('Xtrain shape')
+                print(X_train.shape)
                 print('done train')
                             
                 X_val = np.vstack((X_val, all_segments[train_no:tv,:]))
@@ -317,6 +322,8 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
         if usage_modus=='trainval':
             print("target file name")
             print(data_dir_train)
+            print(data_train.shape)
+            
             counter_seq = 0
             for f in range(data_train.shape[0]):
                 try:
