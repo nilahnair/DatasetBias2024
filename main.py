@@ -30,13 +30,13 @@ def load_credentials(path='~/.mongodb_credentials'):
  
     return user, pw
 
-user, pw = load_credentials(path='~/.mongodb_credentials')
+user, pw, url, db_name = load_credentials(path='~/.mongodb_credentials')
 
 ex= Experiment('mobiact cnn x3 exp1')
 
 
-ex.observers.append(MongoObserver.create(url='curtiz',
-                                         db_name='nnair_sacred',
+ex.observers.append(MongoObserver.create(url=url,
+                                         db_name=db_name,
                                          username=user,
                                          password=pw,
                                          authSource='admin',
