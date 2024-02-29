@@ -252,7 +252,7 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
                 #print(recordings)
             
                 file_name_data = "{}/{}_{}_{}_annotated.csv".format(act, act, sub, recordings)
-                print("\n{}".format(file_name_data))
+                #print("\n{}".format(file_name_data))
                 try:
                     # getting data
                     #print(FOLDER_PATH + file_name_data)
@@ -270,6 +270,7 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
             all_segments = norm_mobi(all_segments)
             print("\nFiles loaded and normalised")
             frames = all_segments.shape[0]
+            
             if frames != 0 and usage_modus == 'trainval':
                 train_no=round(0.70*frames)
                 val_no=round(0.15*frames)
@@ -465,7 +466,7 @@ def create_dataset(identity_bool = False):
     print('test ids')
     print(test_ids)
     
-    
+    '''
     print("Reading subject info...")
     start_time = time.time()
     subject_info = read_subject_info(SUBJECT_INFO_FILE)
@@ -482,7 +483,7 @@ def create_dataset(identity_bool = False):
     generate_CSV(base_directory, "val.csv", data_dir_val)
     generate_CSV(base_directory, "test.csv", data_dir_test)
     generate_CSV_final(base_directory + "train_final.csv", data_dir_train, data_dir_val)
-
+    '''
     return
     
 
