@@ -291,6 +291,7 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
                 X_train = np.vstack((X_train, all_segments[0:train_no,:]))
                 act_train = np.append(act_train, np.full((train_no), activities_id[act]))
                 id_train = np.append(id_train, np.full((train_no), subject_id[sub]))
+                
                 print('Xtrain shape')
                 print(X_train.shape)
                 print('done train')
@@ -298,11 +299,15 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
                 X_val = np.vstack((X_val, all_segments[train_no:tv,:]))
                 act_val = np.append(act_val, np.full((val_no), activities_id[act]))
                 id_val = np.append(id_val, np.full((val_no), subject_id[sub]))
+                print('Xval shape')
+                print(X_val.shape)
                 print('done val')
             elif frames != 0 and usage_modus =='test':
                 X_test = np.vstack((X_test, all_segments))
                 act_test = np.append(act_test, np.full((all_segments.shape[0]), activities_id[act]))
                 id_test = np.append(id_test, np.full((all_segments.shape[0]), subject_id[sub]))
+                print('Xtest shape')
+                print(X_test.shape)
                 print('done test')        
    
     try: 
@@ -349,6 +354,7 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
             print("val data save")
             print("target file name")
             print(data_dir_val)
+            print(data_val.shape)
             counter_seq = 0
             for f in range(data_val.shape[0]):
                 try:
@@ -374,6 +380,7 @@ def generate_data(ids, sliding_window_length, sliding_window_step, base_director
             print("test data save")
             print("target file name")
             print(data_dir_test)
+            print(data_test.shape)
             counter_seq = 0
             for f in range(data_test.shape[0]):
                 try:
