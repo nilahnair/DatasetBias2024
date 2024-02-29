@@ -32,7 +32,7 @@ def load_credentials(path='~/.mongodb_credentials'):
 
 user, pw, url, db_name = load_credentials(path='~/.mongodb_credentials')
 
-ex= Experiment('mobiact lstm x3 exp7')
+ex= Experiment('mobiact cnn x3 exp7')
 
 
 ex.observers.append(MongoObserver.create(url=url,
@@ -134,7 +134,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
                             'lstm': {'softmax': 15, 'attribute': 10},
                             'cnn_imu': {'softmax': 30, 'attribute': 10},
                             'cnn_transformer':{'softmax': 50, 'attribute': 6}},
-              'mobiact': {'cnn': {'softmax': 15, 'attribute': 50},
+              'mobiact': {'cnn': {'softmax': 30, 'attribute': 50},
                           'lstm': {'softmax': 15, 'attribute': 5},
                           'cnn_imu': {'softmax': 32, 'attribute': 50},
                           'cnn_transformer':{'softmax': 15, 'attribute': 6}},
@@ -223,7 +223,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
         labeltype = "class"
         folder_exp = {'mocap': "/data/nnair/datasetbias/lara/results/exp32/cnntrans/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
-                    'mobiact': "/data/nnair/datasetbias/mobiact/results/exp7/lstm/",
+                    'mobiact': "/data/nnair/datasetbias/mobiact/results/exp7/cnn/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/results/exp5/cnntrans/",
                     'sisfall': "/data/nnair/datasetbias/sisfall/results/exp33/cnntrans/"
                     }
@@ -243,7 +243,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
                     }
 
     # GPU
-    os.environ["CUDA_VISIBLE_DEVICES"] = "7"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     GPU = 0
 
     # Labels position on the segmented window
@@ -357,7 +357,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 def my_config():
     print("configuration function began")
     config = configuration(dataset_idx=2,
-                           network_idx=1,
+                           network_idx=0,
                            output_idx=0,
                            usage_modus_idx=0,
                            #dataset_fine_tuning_idx=0,
