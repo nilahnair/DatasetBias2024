@@ -473,7 +473,7 @@ def create_dataset(identity_bool = False):
             test_ids.append(i)
     
     
-    base_directory = '/data/nnair/icpr2024/mobiact/prepros/exp1/'
+    base_directory = '/data/nnair/datasetbias/mobiact/prepros/exp1'
     print('train ids')
     print(train_ids)
     print('test ids')
