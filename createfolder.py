@@ -6,10 +6,10 @@ Created on Fri Feb 16 15:22:12 2024
 """
 import os
 
-base_dir = '/data/nnair/datasetbias/sisfall/prepros/'
+base_dir = '/data/nnair/datasetbias/mobiact/prepros/'
 
 def create_folder():
-    for i in range(1,34):
+    for i in range(1,38):
         folder = 'exp' + str(i)
         path = os.path.join(base_dir, folder)
         try:
