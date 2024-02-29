@@ -26,7 +26,7 @@ def load_credentials(path='~/.mongodb_credentials'):
     logger = logging.getLogger('::load_credentials')
     logger.info(f'Loading credientials from {path}')
     with io.open(path) as f:
-        user, pw = f.read().strip().split(',')
+        user, pw, url, db_name = f.read().strip().split(',')
  
     return user, pw
 
