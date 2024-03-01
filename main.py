@@ -32,7 +32,7 @@ def load_credentials(path='~/.mongodb_credentials'):
 
 user, pw, url, db_name = load_credentials(path='~/.mongodb_credentials')
 
-ex= Experiment('mobiact lstm x3 exp20')
+ex= Experiment('mobiact cnntrans x3 exp20')
 
 
 ex.observers.append(MongoObserver.create(url=url,
@@ -223,7 +223,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
         labeltype = "class"
         folder_exp = {'mocap': "/data/nnair/datasetbias/lara/results/exp32/cnntrans/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
-                    'mobiact': "/data/nnair/datasetbias/mobiact/results/exp20/lstm/",
+                    'mobiact': "/data/nnair/datasetbias/mobiact/results/exp20/cnntrans/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/results/exp5/cnntrans/",
                     'sisfall': "/data/nnair/datasetbias/sisfall/results/exp33/cnntrans/"
                     }
@@ -357,7 +357,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 def my_config():
     print("configuration function began")
     config = configuration(dataset_idx=2,
-                           network_idx=1,
+                           network_idx=3,
                            output_idx=0,
                            usage_modus_idx=0,
                            #dataset_fine_tuning_idx=0,
