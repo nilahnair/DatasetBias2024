@@ -32,7 +32,7 @@ def load_credentials(path='~/.mongodb_credentials'):
 
 user, pw, url, db_name = load_credentials(path='~/.mongodb_credentials')
 
-ex= Experiment('mobiact lstm x3 exp8')
+ex= Experiment('mobiact cnn x3 exp8')
 
 
 ex.observers.append(MongoObserver.create(url=url,
@@ -80,7 +80,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
     # Number of classes for either for activity recognition
     num_classes = {'mocap': 7, 'mbientlab': 7, 'mobiact': 9, 'motionsense': 6, 'sisfall': 15}
     num_attributes = {'mocap': 19, 'mbientlab': 19, 'mobiact': 0, 'motionsense': 0, 'sisfall': 0}
-    num_tr_inputs = {'mocap':64376, 'mbientlab': 94753, 'mobiact': 33244, 'motionsense': 20033, 'sisfall': 25171}
+    num_tr_inputs = {'mocap':64376, 'mbientlab': 94753, 'mobiact': 33467, 'motionsense': 20033, 'sisfall': 25171}
 
     
 
@@ -223,7 +223,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
         labeltype = "class"
         folder_exp = {'mocap': "/data/nnair/datasetbias/lara/results/exp32/cnntrans/",
                     'mbientlab': "/data/nnair/icpr2024/lara_imu/results/transt/",
-                    'mobiact': "/data/nnair/datasetbias/mobiact/results/exp8/lstm/",
+                    'mobiact': "/data/nnair/datasetbias/mobiact/results/exp8/cnn/",
                     'motionsense': "/data/nnair/datasetbias/motionsense/results/exp5/cnntrans/",
                     'sisfall': "/data/nnair/datasetbias/sisfall/results/exp33/cnntrans/"
                     }
@@ -243,7 +243,7 @@ def configuration(dataset_idx, network_idx, output_idx, usage_modus_idx=0, datas
                     }
 
     # GPU
-    os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     GPU = 0
 
     # Labels position on the segmented window
@@ -357,7 +357,7 @@ def setup_experiment_logger(logging_level=logging.DEBUG, filename=None):
 def my_config():
     print("configuration function began")
     config = configuration(dataset_idx=2,
-                           network_idx=1,
+                           network_idx=0,
                            output_idx=0,
                            usage_modus_idx=0,
                            #dataset_fine_tuning_idx=0,
