@@ -470,7 +470,7 @@ def create_dataset(identity_bool = False):
     
     
     train_ids=[]
-    for i in [ 6, 8, 22, 24, 25, 35, 38, 42, 46, 50, 58, 61]:
+    for i in [ 10, 11, 23, 26, 35, 42, 49, 51, 60, 61, 66, 67]:
         x = [sub_list for sub_list, v in sub_list.items() if v == i][0]
         train_ids.append(x)
         
@@ -480,7 +480,7 @@ def create_dataset(identity_bool = False):
             test_ids.append(i)
     
     
-    base_directory = '/data/nnair/datasetbias/mobiact/prepros/exp12/'
+    base_directory = '/data/nnair/datasetbias/mobiact/prepros/exp13/'
     print('train ids')
     print(train_ids)
     print('test ids')
